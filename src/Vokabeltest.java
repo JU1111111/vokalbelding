@@ -1,6 +1,6 @@
 public class Vokabeltest{
 
-	public vokabaltest(){
+	public Vokabeltest(){
 
 	}
 	public void addVoc(){
