@@ -1,5 +1,8 @@
 public class App {
     public static void main(String[] args) throws Exception {
+        new GUI();
+    }
+    public static void testing() {
         Vokabeltest voc = new Vokabeltest();
         voc.addVoc("bean","BEEEEEANZ");
         voc.addVoc("bruh","reeee");
@@ -12,5 +15,6 @@ public class App {
         for (VokabelWort V : voc.Vokalbelliste) {
             System.out.println(V.word);
         }
+        
     }
 }
