@@ -23,11 +23,12 @@ public class Vokabeltest{
 	}
 
 	public void shuffleVocList(){
-
-		for (Vokabel vokabel : Vokalbelliste) {
+		shuffeledList = Vokalbelliste;
+		for (int i = 0; i < Vokalbelliste.size(); i++) {
 			int randomNum = ThreadLocalRandom.current().nextInt(0, Vokalbelliste.size() - 1);
-			shuffeledList.add(randomNum, vokabel);
-		}
+			Vokabel toshuffle = Vokalbelliste.remove(i);
+			shuffeledList.add(randomNum, toshuffle);
+		} 
 
 		Vokalbelliste = shuffeledList;
 	}
@@ -38,6 +39,7 @@ public class Vokabeltest{
 			return true;
 		}
 		else{
+			this.voc.guessedWrong += 1;
 			return false;
 		}
 	}
