@@ -1,10 +1,10 @@
-public class Vokabel {
+public class voc {
 	public String word;
 	public String translation;
 	public int guessedRight;
 	public int guessedWrong;
 
-	public Vokabel(String word, String translation){
+	public voc(String word, String translation){
 		this.word = word;
 		this.translation = translation;
 		this.guessedRight = 0;
@@ -15,5 +15,4 @@ public class Vokabel {
 		float percentageright = 100 * (guessedRight / guessedWrong);
 		return percentageright;
 	}
-
 }

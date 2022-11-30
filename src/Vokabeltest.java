@@ -3,35 +3,40 @@ import java.util.concurrent.ThreadLocalRandom;
 
 
 public class Vokabeltest{
-	public ArrayList<Vokabel> Vokalbelliste = new ArrayList<Vokabel>();
-	ArrayList<Vokabel> shuffeledList= new ArrayList<Vokabel>();
+	public ArrayList<voc> Vokalbelliste = new ArrayList<voc>();
+	ArrayList<voc> shuffeledList= new ArrayList<voc>();
 	private int counter;
-	Vokabel voc;
+	voc voc;
+
 
 	public Vokabeltest(){
 		
 	}
+
+
 	public void addVoc(String word, String translation){
-		Vokabel newVoc = new Vokabel(word, translation);
+		voc newVoc = new voc(word, translation);
 		Vokalbelliste.add(newVoc); 
 	}
 
-	public Vokabel getNextVoc(){
-		Vokabel voc = Vokalbelliste.get(counter);
+
+	public voc getNextVoc(){
+		voc voc = Vokalbelliste.get(counter);
 		this.voc = voc;
 		return voc;
 	}
+
 
 	public void shuffleVocList(){
 		shuffeledList = Vokalbelliste;
 		for (int i = 0; i < Vokalbelliste.size(); i++) {
 			int randomNum = ThreadLocalRandom.current().nextInt(0, Vokalbelliste.size() - 1);
-			Vokabel toshuffle = Vokalbelliste.remove(i);
+			voc toshuffle = Vokalbelliste.remove(i);
 			shuffeledList.add(randomNum, toshuffle);
 		} 
-
 		Vokalbelliste = shuffeledList;
 	}
+
 
 	public boolean guess(String guess){
 		if (this.voc.translation.equals(guess)){

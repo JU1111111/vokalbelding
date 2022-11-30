@@ -5,11 +5,11 @@ public class App {
         voc.addVoc("bruh","reeee");
         voc.addVoc("bbbbb","Yeeeeeeet");
 
-        for (Vokabel V : voc.Vokalbelliste) {
+        for (vokabel V : voc.Vokalbelliste) {
             System.out.println(V.word);
         }
         voc.shuffleVocList();
-        for (Vokabel V : voc.Vokalbelliste) {
+        for (vokabel V : voc.Vokalbelliste) {
             System.out.println(V.word);
         }
     }
