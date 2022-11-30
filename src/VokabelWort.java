@@ -1,10 +1,10 @@
-public class voc {
+public class VokabelWort {
 	public String word;
 	public String translation;
 	public int guessedRight;
 	public int guessedWrong;
 
-	public voc(String word, String translation){
+	public VokabelWort(String word, String translation){
 		this.word = word;
 		this.translation = translation;
 		this.guessedRight = 0;
