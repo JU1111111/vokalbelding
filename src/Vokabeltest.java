@@ -1,12 +1,12 @@
-import java.util.List;
 import java.util.ArrayList;
 import java.util.concurrent.ThreadLocalRandom;
 
 
 public class Vokabeltest{
 	public ArrayList<Vokabel> Vokalbelliste = new ArrayList<Vokabel>();
-	private int counter;
 	ArrayList<Vokabel> shuffeledList= new ArrayList<Vokabel>();
+	private int counter;
+	Vokabel voc;
 
 	public Vokabeltest(){
 		
@@ -18,6 +18,7 @@ public class Vokabeltest{
 
 	public Vokabel getNextVoc(){
 		Vokabel voc = Vokalbelliste.get(counter);
+		this.voc = voc;
 		return voc;
 	}
 
@@ -29,5 +30,15 @@ public class Vokabeltest{
 		}
 
 		Vokalbelliste = shuffeledList;
+	}
+
+	public boolean guess(String guess){
+		if (this.voc.translation.equals(guess)){
+			this.voc.guessedRight += 1;
+			return true;
+		}
+		else{
+			return false;
+		}
 	}
 }
