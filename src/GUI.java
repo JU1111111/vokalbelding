@@ -1,17 +1,15 @@
 import java.awt.BorderLayout;
-import javax.swing.BorderFactory;
-import javax.swing.JFrame;
-import javax.swing.JLabel;
-import javax.swing.JPanel;
-import javax.swing.JTextField;
-import javax.swing.JButton;
+
+import javax.swing.plaf.ColorUIResource;
 import javax.swing.plaf.DimensionUIResource;
-
+import java.awt.Color;
 import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
+import java.awt.event.*;  
+import javax.swing.*;   
 
 
-public class GUI implements ActionListener {
+
+public class GUI{
 	private static JFrame frame;
 	private static JPanel panel;
 	private static JLabel germanLabel;
@@ -19,12 +17,17 @@ public class GUI implements ActionListener {
 	private static JLabel englishLabel;
 	private static JTextField wordInput;
 	private static JButton button;
+	private static JLabel warningText;
 
 	public GUI(){
+		Vokabeltest voc = new Vokabeltest();
 		frame = new JFrame();
 		panel = new JPanel();
 
-
+		warningText = new JLabel();
+		warningText.setBounds(200, 75, 2000, 25);
+		panel.add(warningText);
+		warningText.setVisible(false);
 		
 		germanLabel = new JLabel("Enter German word");
 		germanLabel.setBounds(10, 20, 250, 25);
@@ -44,7 +47,19 @@ public class GUI implements ActionListener {
 		
 		button = new JButton("Enter Word");
 		button.setBounds(10, 85, 120, 25);
-		button.addActionListener();
+		button.addActionListener(new ActionListener(){  
+			public void actionPerformed(ActionEvent e){  
+						String germanword = germanWordInput.getText();
+						String tanslatedWord = wordInput.getText();
+						if(!germanword $$ translatedWord != null)
+						voc.addVoc(germanword, tanslatedWord);
+						warningText.setText("BRUH");
+						warningText.setForeground(new ColorUIResource(255, 0, 0));
+						warningText.setVisible(true);
+					}  
+				}
+			);    	
+		
 		panel.add(button);
 
 
@@ -60,10 +75,5 @@ public class GUI implements ActionListener {
 		frame.setVisible(true);
 	}
 
-	@Override
-	public void actionPerformed(ActionEvent e) {
-		String testText = wordInput.getText();
-		System.out.println(testText);
-		
-	}
+	
 }
