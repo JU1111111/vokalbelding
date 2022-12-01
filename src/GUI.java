@@ -5,8 +5,6 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 import javax.swing.JButton;
-import java.awt.GridLayout;
-import javax.swing.SwingUtilities;
 import javax.swing.plaf.DimensionUIResource;
 
 import java.awt.event.ActionEvent;
@@ -46,7 +44,7 @@ public class GUI implements ActionListener {
 		
 		button = new JButton("Enter Word");
 		button.setBounds(10, 85, 120, 25);
-		button.addActionListener(new GUI());
+		button.addActionListener();
 		panel.add(button);
 
 
