@@ -1,7 +1,7 @@
 public class App {
     public static void main(String[] args) throws Exception {
-        //new GUI();
-        testing();
+        new GUI();
+        //testing();
     }
     public static void testing() {
         Vokabeltest voc = new Vokabeltest();
