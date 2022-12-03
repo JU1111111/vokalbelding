@@ -93,7 +93,7 @@ public class GUI{
 					}  
 					}
 				);
-			panel.add(switchPanelButton, );
+			panel.add(switchPanelButton);
 		
 		panel.setLayout(null);
 		panel.setBorder(BorderFactory.createEmptyBorder(30, 30, 10, 10));
@@ -116,6 +116,12 @@ public class GUI{
 
 
 	public GUI(){
+		try{
+			UIManager.setLookAndFeel(UIManager.getSystemLookAndFeelClassName());
+		}
+		catch (Exception e){
+			e.printStackTrace();
+		}
 		voc = new Vokabeltest();
 		initializeAddFrame();
 		AddWordFrame.setVisible(true);

@@ -9,7 +9,7 @@ import java.awt.event.*;
 import javax.swing.*;
 import javax.swing.LayoutStyle.ComponentPlacement; 
 
-
+/*
 public class addFrame extends JPanel {
 
 
@@ -100,3 +100,4 @@ public class addFrame extends JPanel {
 	AddWordFrame.pack();
 	AddWordFrame.setVisible(false);
 }
+ */
