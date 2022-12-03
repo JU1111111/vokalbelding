@@ -1,3 +1,4 @@
+import javax.swing.JPanel;
 import java.awt.BorderLayout;
 
 import javax.swing.plaf.ColorUIResource;
@@ -6,22 +7,15 @@ import javax.swing.plaf.DimensionUIResource;
 import java.awt.event.ActionEvent;
 import java.awt.event.*;  
 import javax.swing.*;
-import javax.swing.LayoutStyle.ComponentPlacement;   
+import javax.swing.LayoutStyle.ComponentPlacement; 
+
+
+public class addFrame extends JPanel {
 
 
 
-public class GUI{
-	private static JFrame AddWordFrame;
-	
 
-	private static JFrame pruefungFrame;
-	
-
-	private static Vokabeltest voc;
-
-
-	private void initializeAddFrame(){
-		JPanel panel;
+	public addFrame addFrame(){
 		JLabel germanLabel;
 		JTextField germanWordInput;
 		JLabel englishLabel;
@@ -31,28 +25,28 @@ public class GUI{
 		JButton switchPanelButton;
 
 		AddWordFrame = new JFrame();
-		panel = new JPanel();
+		this = new JPanel();
 	
 		warningText = new JLabel();
 		warningText.setBounds(200, 75, 2000, 25);
-		panel.add(warningText);
+		this.add(warningText);
 		warningText.setVisible(false);
 		
 		germanLabel = new JLabel("Enter German word");
 		germanLabel.setBounds(10, 20, 250, 25);
-		panel.add(germanLabel);
+		this.add(germanLabel);
 	
 		germanWordInput = new JTextField(30);
 		germanWordInput.setBounds(175, 20, 250, 25);
-		panel.add(germanWordInput);
+		this.add(germanWordInput);
 		
 		englishLabel = new JLabel("Enter Translation");
 		englishLabel.setBounds(10, 50, 250, 25);
-		panel.add(englishLabel);
+		this.add(englishLabel);
 		
 		englishWordInput = new JTextField(30);
 		englishWordInput.setBounds(175, 50, 250, 25);
-		panel.add(englishWordInput);
+		this.add(englishWordInput);
 
 		enterButton = new JButton("Enter Word");
 		enterButton.setBounds(10, 85, 120, 25);
@@ -80,7 +74,7 @@ public class GUI{
 				}  
 				}
 			);
-			panel.add(enterButton);
+			this.add(enterButton);
 			
 			
 			switchPanelButton = new JButton("Starte Prüfung");
@@ -93,38 +87,16 @@ public class GUI{
 					}  
 					}
 				);
-			panel.add(switchPanelButton, );
+			this.add(switchPanelButton, );
 		
-		panel.setLayout(null);
-		panel.setBorder(BorderFactory.createEmptyBorder(30, 30, 10, 10));
-		
-		AddWordFrame.setPreferredSize(new DimensionUIResource(1000, 1000));
-		AddWordFrame.add(panel, BorderLayout.CENTER);
-		AddWordFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		AddWordFrame.setTitle("bruh");
-		AddWordFrame.pack();
-		AddWordFrame.setVisible(false);
-	}
-
-
-	private void initializePruefungFrame(){
-		
-		JLabel vokabelLabel;
-
+		this.setLayout(null);
+		this.setBorder(BorderFactory.createEmptyBorder(30, 30, 10, 10));
 		
 	}
-
-
-	public GUI(){
-		voc = new Vokabeltest();
-		initializeAddFrame();
-		AddWordFrame.setVisible(true);
-
-
-
-		//new GridLayout(0,1)
-		
-	}
-
-	
+	AddWordFrame.setPreferredSize(new DimensionUIResource(1000, 1000));
+	AddWordFrame.add(this, BorderLayout.CENTER);
+	AddWordFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+	AddWordFrame.setTitle("bruh");
+	AddWordFrame.pack();
+	AddWordFrame.setVisible(false);
 }
