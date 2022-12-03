@@ -48,15 +48,24 @@ public class GUI{
 		button = new JButton("Enter Word");
 		button.setBounds(10, 85, 120, 25);
 		button.addActionListener(new ActionListener(){  
-			public void actionPerformed(ActionEvent e){  
-						String germanword = germanWordInput.getText();
-						String tanslatedWord = wordInput.getText();
-						if(!germanword $$ translatedWord != null)
-						voc.addVoc(germanword, tanslatedWord);
+			String germanword;
+			String translatedWord;  
+			public void actionPerformed(ActionEvent e){
+				try {
+					germanword = germanWordInput.getText();
+					translatedWord = wordInput.getText();
+					
+				} catch (Exception ex) {
 						warningText.setText("BRUH");
 						warningText.setForeground(new ColorUIResource(255, 0, 0));
 						warningText.setVisible(true);
-					}  
+				}
+				finally{
+					voc.addVoc(germanword, translatedWord);
+				}
+						
+						
+				}  
 				}
 			);    	
 		
