@@ -9,13 +9,15 @@ import java.awt.event.*;
 import javax.swing.*;
 import javax.swing.LayoutStyle.ComponentPlacement; 
 
-/*
+
+ /* 
 public class addFrame extends JPanel {
 
 
+	JFrame AddWordFrame;
 
 
-	public addFrame addFrame(){
+	public addFrame(){
 		JLabel germanLabel;
 		JTextField germanWordInput;
 		JLabel englishLabel;
@@ -36,7 +38,8 @@ public class addFrame extends JPanel {
 		germanLabel.setBounds(10, 20, 250, 25);
 		this.add(germanLabel);
 	
-		germanWordInput = new JTextField(30);
+		germanWordInput = new JTextField
+		(30);
 		germanWordInput.setBounds(175, 20, 250, 25);
 		this.add(germanWordInput);
 		
@@ -100,4 +103,4 @@ public class addFrame extends JPanel {
 	AddWordFrame.pack();
 	AddWordFrame.setVisible(false);
 }
- */
+*/
