@@ -12,8 +12,6 @@ import javax.swing.LayoutStyle.ComponentPlacement;
 
 public class GUI{
 	private static JFrame AddWordFrame;
-	
-
 	private static JFrame pruefungFrame;
 	
 
@@ -108,10 +106,18 @@ public class GUI{
 
 
 	private void initializePruefungFrame(){
-		
+		JPanel panel;
+		JTextField uebersetzungWordInput;
+		JButton enterButton;
+		JButton endPruefungButton;
 		JLabel vokabelLabel;
-
 		
+		panel = new JPanel();
+		uebersetzungWordInput = new JTextField();
+		enterButton = new JButton();
+		vokabelLabel = new JLabel();
+
+
 	}
 
 
@@ -125,10 +131,6 @@ public class GUI{
 		voc = new Vokabeltest();
 		initializeAddFrame();
 		AddWordFrame.setVisible(true);
-
-
-
-		//new GridLayout(0,1)
 		
 	}
 
