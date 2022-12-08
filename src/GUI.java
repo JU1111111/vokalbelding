@@ -1,9 +1,12 @@
 import java.awt.BorderLayout;
+import java.awt.Font;
 
 import javax.swing.plaf.ColorUIResource;
 import javax.swing.plaf.DimensionUIResource;
 
 import java.awt.event.ActionEvent;
+import java.io.Console;
+import java.text.Format;
 import java.awt.event.*;  
 import javax.swing.*;
 import javax.swing.LayoutStyle.ComponentPlacement;   
@@ -86,7 +89,7 @@ public class GUI{
 			switchPanelButton.addActionListener(new ActionListener(){  
 				public void actionPerformed(ActionEvent e){
 					
-					
+					changeFrame();
 		
 					}  
 					}
@@ -106,18 +109,69 @@ public class GUI{
 
 
 	private void initializePruefungFrame(){
-		JPanel panel;
-		JTextField uebersetzungWordInput;
+		JPanel lePanel;
+		JLabel englishLabel;
+		JTextField englishWordInput;
 		JButton enterButton;
-		JButton endPruefungButton;
-		JLabel vokabelLabel;
+		JLabel vocabelText;
+		JButton switchPanelButton;
+
+		pruefungFrame = new JFrame();
+		lePanel = new JPanel();
+	
+		vocabelText = new JLabel("");
+		vocabelText.setFont(new Font("comicsans", Font.PLAIN, 20));
+		vocabelText.setBounds(250, 10, 250, 50);
+		vocabelText.setVisible(false);
+		VokabelWort naechsteVokabel = voc.getNextVoc();
+		System.out.println(naechsteVokabel.word);
+		vocabelText.setText(naechsteVokabel.word);
+		lePanel.add(vocabelText);
+		vocabelText.setVisible(true);
+
+		englishLabel = new JLabel("Enter Translation");
+		englishLabel.setBounds(10, 50, 250, 25);
+		lePanel.add(englishLabel);
 		
-		panel = new JPanel();
-		uebersetzungWordInput = new JTextField();
-		enterButton = new JButton();
-		vokabelLabel = new JLabel();
+		englishWordInput = new JTextField(30);
+		englishWordInput.setBounds(175, 50, 250, 25);
+		lePanel.add(englishWordInput);
 
-
+		enterButton = new JButton("Enter Word");
+		enterButton.setBounds(250, 85, 120, 25);
+		enterButton.addActionListener(new ActionListener(){  
+			String enteredWord;
+			public void actionPerformed(ActionEvent e){
+				enteredWord = englishWordInput.getText();
+				englishWordInput.setText("");
+				System.out.println("YAYEEET");
+	
+				}  
+				}
+			);
+			lePanel.add(enterButton);
+			
+			
+			switchPanelButton = new JButton("Beende Prüfung");
+			switchPanelButton.setBounds(250, 140, 120, 25);
+			switchPanelButton.addActionListener(new ActionListener(){  
+				public void actionPerformed(ActionEvent e){
+					changeFrame();	
+					
+					}  
+					}
+				);
+				lePanel.add(switchPanelButton);
+		
+				lePanel.setLayout(null);
+				lePanel.setBorder(BorderFactory.createEmptyBorder(30, 30, 10, 10));
+		
+		pruefungFrame.setPreferredSize(new DimensionUIResource(1000, 1000));
+		pruefungFrame.add(lePanel, BorderLayout.CENTER);
+		pruefungFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		pruefungFrame.setTitle("bruh");
+		pruefungFrame.pack();
+		pruefungFrame.setVisible(false);
 	}
 
 
@@ -129,9 +183,29 @@ public class GUI{
 			e.printStackTrace();
 		}
 		voc = new Vokabeltest();
+		testingShit();
 		initializeAddFrame();
+		initializePruefungFrame();
 		AddWordFrame.setVisible(true);
+		pruefungFrame.setVisible(false);
 		
+	}
+	private void changeFrame(){
+		if(AddWordFrame.isVisible()){
+			AddWordFrame.setVisible(false);
+			pruefungFrame.setVisible(true);
+		}
+		else{
+			AddWordFrame.setVisible(true);
+			pruefungFrame.setVisible(false);
+		}
+
+	}
+
+	private void testingShit(){
+		voc.addVoc("bean","BEEEEEANZ");
+        voc.addVoc("bruh","reeee");
+        voc.addVoc("bbbbb","Yeeeeeeet");	
 	}
 
 	
