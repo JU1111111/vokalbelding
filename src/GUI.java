@@ -5,11 +5,8 @@ import javax.swing.plaf.ColorUIResource;
 import javax.swing.plaf.DimensionUIResource;
 
 import java.awt.event.ActionEvent;
-import java.io.Console;
-import java.text.Format;
 import java.awt.event.*;  
 import javax.swing.*;
-import javax.swing.LayoutStyle.ComponentPlacement;   
 
 
 
@@ -66,6 +63,8 @@ public class GUI{
 				translatedWord = englishWordInput.getText();
 				System.out.println(translatedWord);
 				System.out.println(germanWord);
+				germanWordInput.setText("");
+				englishWordInput.setText("");
 	
 				if (translatedWord.isBlank() || germanWord.isBlank()){
 					System.out.println("YEWEEE");
@@ -115,6 +114,7 @@ public class GUI{
 		JButton enterButton;
 		JLabel vocabelText;
 		JButton switchPanelButton;
+		JLabel richtigHaken;
 
 		pruefungFrame = new JFrame();
 		lePanel = new JPanel();
@@ -127,6 +127,7 @@ public class GUI{
 		System.out.println(naechsteVokabel.word);
 		vocabelText.setText(naechsteVokabel.word);
 		lePanel.add(vocabelText);
+	
 		vocabelText.setVisible(true);
 
 		englishLabel = new JLabel("Enter Translation");
@@ -137,18 +138,38 @@ public class GUI{
 		englishWordInput.setBounds(175, 50, 250, 25);
 		lePanel.add(englishWordInput);
 
+		richtigHaken = new JLabel();
+		ImageIcon haken = new ImageIcon("src/fortnite-default-skin.gif");
+		richtigHaken.setIcon(haken);
+		richtigHaken.setBounds(600, 20, 1000, 1000);
+		lePanel.setLayout(new GridBagLayout());
+		richtigHaken.setVisible(true);
+		lePanel.add(richtigHaken);
+
 		enterButton = new JButton("Enter Word");
-		enterButton.setBounds(250, 85, 120, 25);
+		enterButton.setBounds(250, 50, 120, 25);
 		enterButton.addActionListener(new ActionListener(){  
 			String enteredWord;
 			public void actionPerformed(ActionEvent e){
 				enteredWord = englishWordInput.getText();
 				englishWordInput.setText("");
-				System.out.println("YAYEEET");
-	
-				}  
+				System.out.println(enteredWord);
+				
+				Boolean guessedRight = voc.guess(enteredWord);
+				if(guessedRight){
+					System.out.println("YEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEE");
+					VokabelWort nvoc = voc.getNextVoc();
+					String nvocstr = nvoc.word;
+					System.out.println(nvocstr);
+					richtigHaken.setVisible(true);
+					vocabelText.setText(nvocstr);
 				}
-			);
+				else{
+					System.out.println("nuts");
+				}
+			}
+
+		});
 			lePanel.add(enterButton);
 			
 			
@@ -190,6 +211,8 @@ public class GUI{
 		pruefungFrame.setVisible(false);
 		
 	}
+
+
 	private void changeFrame(){
 		if(AddWordFrame.isVisible()){
 			AddWordFrame.setVisible(false);
@@ -202,6 +225,7 @@ public class GUI{
 
 	}
 
+	
 	private void testingShit(){
 		voc.addVoc("bean","BEEEEEANZ");
         voc.addVoc("bruh","reeee");
