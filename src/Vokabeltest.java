@@ -23,6 +23,7 @@ public class Vokabeltest{
 	public VokabelWort getNextVoc(){
 		VokabelWort voc = Vokalbelliste.get(counter);
 		this.voc = voc;
+		counter++;
 		return voc;
 	}
 

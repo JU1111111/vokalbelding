@@ -1,3 +1,4 @@
+/*
 import javax.swing.JPanel;
 import java.awt.BorderLayout;
 
@@ -7,7 +8,7 @@ import javax.swing.plaf.DimensionUIResource;
 import java.awt.event.ActionEvent;
 import java.awt.event.*;  
 import javax.swing.*;
-import javax.swing.LayoutStyle.ComponentPlacement; 
+import javax.swing.LayoutStyle.ComponentPlacement;  */
 
 
  /* 
