@@ -139,15 +139,15 @@ public class GUI{
 		lePanel.add(englishWordInput);
 
 		richtigHaken = new JLabel();
-		ImageIcon haken = new ImageIcon("src/fortnite-default-skin.gif");
+		ImageIcon haken = new ImageIcon("src/images.png");
 		richtigHaken.setIcon(haken);
 		richtigHaken.setBounds(600, 20, 1000, 1000);
-		lePanel.setLayout(new GridBagLayout());
-		richtigHaken.setVisible(true);
+		//lePanel.setLayout(new GridBagLayout());
+		richtigHaken.setVisible(false);
 		lePanel.add(richtigHaken);
 
 		enterButton = new JButton("Enter Word");
-		enterButton.setBounds(250, 50, 120, 25);
+		enterButton.setBounds(250, 100, 120, 30);
 		enterButton.addActionListener(new ActionListener(){  
 			String enteredWord;
 			public void actionPerformed(ActionEvent e){
