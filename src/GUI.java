@@ -1,5 +1,4 @@
 import java.awt.BorderLayout;
-import java.awt.Font;
 
 import javax.swing.plaf.ColorUIResource;
 import javax.swing.plaf.DimensionUIResource;
@@ -11,8 +10,11 @@ import javax.swing.*;
 
 
 public class GUI{
+	private static JFrame homescreen;
 	private static JFrame AddWordFrame;
 	private static JFrame pruefungFrame;
+	private static JFrame lernFrame;
+
 	
 
 	private static Vokabeltest voc;
@@ -106,7 +108,6 @@ public class GUI{
 		AddWordFrame.setVisible(false);
 	}
 
-
 	private void initializePruefungFrame(){
 		JPanel lePanel;
 		JLabel englishLabel;
@@ -120,7 +121,7 @@ public class GUI{
 		lePanel = new JPanel();
 	
 		vocabelText = new JLabel("");
-		vocabelText.setFont(new Font("comicsans", Font.PLAIN, 20));
+		//vocabelText.setFont(new Font("comicsans", Font.PLAIN, 20));
 		vocabelText.setBounds(250, 10, 250, 50);
 		vocabelText.setVisible(false);
 		VokabelWort naechsteVokabel = voc.getNextVoc();
@@ -195,6 +196,33 @@ public class GUI{
 		pruefungFrame.setVisible(false);
 	}
 
+	private void initializeLernFrame(){
+		lernFrame = new JFrame();
+		int anzahlVokabeln = voc.Vokabelliste.getLength();
+
+        String vokabeln[][] = new String[anzahlVokabeln][2];
+
+		for (int i = 0; i < anzahlVokabeln; i++){
+			VokabelWort vok = (VokabelWort) voc.Vokabelliste.getItem(i);
+			vokabeln[i][0] = vok.word;
+			vokabeln[i][1] = vok.translation;
+		}
+
+		String[] ueberschrift = {"Deutsch", "Deutsch"};
+		JTable tabelle = new JTable(vokabeln, ueberschrift);
+		tabelle.setBounds(30, 40, 200, 300);
+
+		JScrollPane sp = new JScrollPane(tabelle);
+
+		lernFrame.add(sp);
+        lernFrame.setSize(500, 200);
+        lernFrame.setVisible(true);
+
+	}
+
+	private void initializeHomescreenFrame(){
+		
+	}
 
 	public GUI(){
 		try{
@@ -207,6 +235,7 @@ public class GUI{
 		testingShit();
 		initializeAddFrame();
 		initializePruefungFrame();
+		initializeLernFrame();
 		AddWordFrame.setVisible(true);
 		pruefungFrame.setVisible(false);
 		

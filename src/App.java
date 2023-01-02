@@ -9,11 +9,16 @@ public class App {
         voc.addVoc("bruh","reeee");
         voc.addVoc("bbbbb","Yeeeeeeet");
 
-        for (VokabelWort V : voc.Vokalbelliste) {
+
+        for (int i = 0; i < voc.Vokabelliste.getLength()-1; i++){
+            VokabelWort V = (VokabelWort) voc.Vokabelliste.getItem(i);
             System.out.println(V.word);
         }
+
         voc.shuffleVocList();
-        for (VokabelWort V : voc.Vokalbelliste) {
+        
+        for (int i = 0; i < voc.Vokabelliste.getLength()-1; i++){
+            VokabelWort V = (VokabelWort) voc.Vokabelliste.getItem(i);
             System.out.println(V.word);
         }
            

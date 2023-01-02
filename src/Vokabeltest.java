@@ -1,10 +1,10 @@
-import java.util.ArrayList;
+//import java.util.ArrayList;
 import java.util.concurrent.ThreadLocalRandom;
 
 
 public class Vokabeltest{
-	public ArrayList<VokabelWort> Vokalbelliste = new ArrayList<VokabelWort>();
-	ArrayList<VokabelWort> shuffeledList= new ArrayList<VokabelWort>();
+	public DynArray Vokabelliste = new DynArray();
+	DynArray shuffeledList= new DynArray();
 	private int counter;
 	VokabelWort voc;
 
@@ -16,12 +16,12 @@ public class Vokabeltest{
 
 	public void addVoc(String word, String translation){
 		VokabelWort newVoc = new VokabelWort(word, translation);
-		Vokalbelliste.add(newVoc); 
+		Vokabelliste.append(newVoc); 
 	}
 
 
 	public VokabelWort getNextVoc(){
-		VokabelWort voc = Vokalbelliste.get(counter);
+		VokabelWort voc = (VokabelWort) Vokabelliste.getItem(counter);
 		this.voc = voc;
 		counter++;
 		return voc;
@@ -29,13 +29,14 @@ public class Vokabeltest{
 
 
 	public void shuffleVocList(){
-		shuffeledList = Vokalbelliste;
-		for (int i = 0; i < Vokalbelliste.size(); i++) {
-			int randomNum = ThreadLocalRandom.current().nextInt(0, Vokalbelliste.size() - 1);
-			VokabelWort toshuffle = Vokalbelliste.remove(i);
-			shuffeledList.add(randomNum, toshuffle);
+		shuffeledList = Vokabelliste;
+		for (int i = 0; i < Vokabelliste.getLength(); i++) {
+			int randomNum = ThreadLocalRandom.current().nextInt(0, Vokabelliste.getLength() - 1);
+			VokabelWort toshuffle = (VokabelWort) Vokabelliste.getItem(i);
+			Vokabelliste.delete(i);
+			shuffeledList.setItem(randomNum, toshuffle);
 		} 
-		Vokalbelliste = shuffeledList;
+		Vokabelliste = shuffeledList;
 	}
 
 
