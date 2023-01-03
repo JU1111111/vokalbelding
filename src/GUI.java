@@ -1,124 +1,113 @@
-import java.awt.BorderLayout;
-
 import javax.swing.plaf.ColorUIResource;
-import javax.swing.plaf.DimensionUIResource;
-
 import java.awt.event.ActionEvent;
 import java.awt.event.*;  
 import javax.swing.*;
+import java.awt.*;    
 
 
 
 public class GUI{
-	private static JFrame homescreen;
-	private static JFrame AddWordFrame;
-	private static JFrame pruefungFrame;
-	private static JFrame lernFrame;
-
-	
-
 	private static Vokabeltest voc;
 
+	private static JFrame mainFrame;
+
+	JPanel hinzufuegenPanel = new JPanel();
+	JPanel pruefungPanel = new JPanel();
+	JPanel lernPanel = new JPanel();
+	JPanel hauptMenuPanel = new JPanel();
+
+	JPanel deck = new JPanel();
+
+	private CardLayout layout = new CardLayout();
 
 	private void initializeAddFrame(){
-		JPanel panel;
-		JLabel germanLabel;
-		JTextField germanWordInput;
-		JLabel englishLabel;
-		JTextField englishWordInput;
+		JLabel deutschesWortLabel;
+		JTextField deutschesWortInput;
+		JLabel englischLabel;
+		JTextField englischWortInput;
 		JButton enterButton;
 		JLabel warningText;
 		JButton switchPanelButton;
 
-		AddWordFrame = new JFrame();
-		panel = new JPanel();
+		hinzufuegenPanel = new JPanel();
 	
 		warningText = new JLabel();
 		warningText.setBounds(200, 75, 2000, 25);
-		panel.add(warningText);
+		hinzufuegenPanel.add(warningText);
 		warningText.setVisible(false);
 		
-		germanLabel = new JLabel("Enter German word");
-		germanLabel.setBounds(10, 20, 250, 25);
-		panel.add(germanLabel);
+		deutschesWortLabel = new JLabel("Deutsches Wort eingeben");
+		deutschesWortLabel.setBounds(10, 20, 250, 25);
+		hinzufuegenPanel.add(deutschesWortLabel);
 	
-		germanWordInput = new JTextField(30);
-		germanWordInput.setBounds(175, 20, 250, 25);
-		panel.add(germanWordInput);
+		deutschesWortInput = new JTextField(30);
+		deutschesWortInput.setBounds(175, 20, 250, 25);
+		hinzufuegenPanel.add(deutschesWortInput);
 		
-		englishLabel = new JLabel("Enter Translation");
-		englishLabel.setBounds(10, 50, 250, 25);
-		panel.add(englishLabel);
+		englischLabel = new JLabel("Übersetzung");
+		englischLabel.setBounds(10, 50, 250, 25);
+		hinzufuegenPanel.add(englischLabel);
 		
-		englishWordInput = new JTextField(30);
-		englishWordInput.setBounds(175, 50, 250, 25);
-		panel.add(englishWordInput);
+		englischWortInput = new JTextField(30);
+		englischWortInput.setBounds(175, 50, 250, 25);
+		hinzufuegenPanel.add(englischWortInput);
 
 		enterButton = new JButton("Enter Word");
 		enterButton.setBounds(10, 85, 120, 25);
 		enterButton.addActionListener(new ActionListener(){  
-			String germanWord;
-			String translatedWord;  
+			String deutschesWort;
+			String uebersetzung;  
 			public void actionPerformed(ActionEvent e){
 				
-				germanWord = germanWordInput.getText();
-				translatedWord = englishWordInput.getText();
-				System.out.println(translatedWord);
-				System.out.println(germanWord);
-				germanWordInput.setText("");
-				englishWordInput.setText("");
+				deutschesWort = deutschesWortInput.getText();
+				uebersetzung = englischWortInput.getText();
+				System.out.printf("Übersetzung: %s ", uebersetzung);
+				System.out.printf("Deutsch: %s ", deutschesWort);
+				deutschesWortInput.setText("");
+				englischWortInput.setText("");
 	
-				if (translatedWord.isBlank() || germanWord.isBlank()){
-					System.out.println("YEWEEE");
+				if (uebersetzung.isBlank() || deutschesWort.isBlank()){
+					System.out.println("Nicht Vollständig");
 					warningText.setText("Wort muss vollständig mit Übersetzung eingegeben werden");
 					warningText.setForeground(new ColorUIResource(255, 0, 0));
 					warningText.setVisible(true);
 				}
 				else{
 					warningText.setVisible(false);
-					voc.addVoc(germanWord, translatedWord);
+					voc.addVoc(deutschesWort, uebersetzung);
 				}
 	
 				}  
 				}
 			);
-			panel.add(enterButton);
+			hinzufuegenPanel.add(enterButton);
 			
 			
-			switchPanelButton = new JButton("Starte Prüfung");
+			switchPanelButton = new JButton("Zurück");
 			switchPanelButton.setBounds(60, 110, 120, 25);
 			switchPanelButton.addActionListener(new ActionListener(){  
 				public void actionPerformed(ActionEvent e){
-					
-					changeFrame();
-		
+					layout.show(deck, "main");
 					}  
 					}
 				);
-			panel.add(switchPanelButton);
+			hinzufuegenPanel.add(switchPanelButton);
 		
-		panel.setLayout(null);
-		panel.setBorder(BorderFactory.createEmptyBorder(30, 30, 10, 10));
+		hinzufuegenPanel.setLayout(null);
+		hinzufuegenPanel.setBorder(BorderFactory.createEmptyBorder(30, 30, 10, 10));
 		
-		AddWordFrame.setPreferredSize(new DimensionUIResource(1000, 1000));
-		AddWordFrame.add(panel, BorderLayout.CENTER);
-		AddWordFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		AddWordFrame.setTitle("bruh");
-		AddWordFrame.pack();
-		AddWordFrame.setVisible(false);
+
 	}
 
 	private void initializePruefungFrame(){
-		JPanel lePanel;
-		JLabel englishLabel;
-		JTextField englishWordInput;
+		JLabel englischLabel;
+		JTextField englischWortInput;
 		JButton enterButton;
 		JLabel vocabelText;
 		JButton switchPanelButton;
 		JLabel richtigHaken;
 
-		pruefungFrame = new JFrame();
-		lePanel = new JPanel();
+		pruefungPanel = new JPanel();
 	
 		vocabelText = new JLabel("");
 		//vocabelText.setFont(new Font("comicsans", Font.PLAIN, 20));
@@ -127,77 +116,86 @@ public class GUI{
 		VokabelWort naechsteVokabel = voc.getNextVoc();
 		System.out.println(naechsteVokabel.word);
 		vocabelText.setText(naechsteVokabel.word);
-		lePanel.add(vocabelText);
+		pruefungPanel.add(vocabelText);
 	
 		vocabelText.setVisible(true);
 
-		englishLabel = new JLabel("Enter Translation");
-		englishLabel.setBounds(10, 50, 250, 25);
-		lePanel.add(englishLabel);
+		englischLabel = new JLabel("Enter Translation");
+		englischLabel.setBounds(10, 50, 250, 25);
+		pruefungPanel.add(englischLabel);
 		
-		englishWordInput = new JTextField(30);
-		englishWordInput.setBounds(175, 50, 250, 25);
-		lePanel.add(englishWordInput);
+		englischWortInput = new JTextField(30);
+		englischWortInput.setBounds(175, 50, 250, 25);
+		pruefungPanel.add(englischWortInput);
 
 		richtigHaken = new JLabel();
 		ImageIcon haken = new ImageIcon("src/images.png");
 		richtigHaken.setIcon(haken);
 		richtigHaken.setBounds(600, 20, 1000, 1000);
-		//lePanel.setLayout(new GridBagLayout());
+		//pruefungPanel.setLayout(new GridBagLayout());
 		richtigHaken.setVisible(false);
-		lePanel.add(richtigHaken);
+		pruefungPanel.add(richtigHaken);
 
 		enterButton = new JButton("Enter Word");
 		enterButton.setBounds(250, 100, 120, 30);
 		enterButton.addActionListener(new ActionListener(){  
 			String enteredWord;
 			public void actionPerformed(ActionEvent e){
-				enteredWord = englishWordInput.getText();
-				englishWordInput.setText("");
+				enteredWord = englischWortInput.getText();
+				englischWortInput.setText("");
 				System.out.println(enteredWord);
 				
 				Boolean guessedRight = voc.guess(enteredWord);
 				if(guessedRight){
-					System.out.println("YEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEE");
+					System.out.println("richtig");
 					VokabelWort nvoc = voc.getNextVoc();
 					String nvocstr = nvoc.word;
 					System.out.println(nvocstr);
 					richtigHaken.setVisible(true);
+					try {
+						Thread.sleep(1000);
+					} catch (Exception ex) {
+					}
+					richtigHaken.setVisible(false);
 					vocabelText.setText(nvocstr);
 				}
 				else{
-					System.out.println("nuts");
+					System.out.println("falsch");
 				}
 			}
 
 		});
-			lePanel.add(enterButton);
+			pruefungPanel.add(enterButton);
 			
 			
 			switchPanelButton = new JButton("Beende Prüfung");
 			switchPanelButton.setBounds(250, 140, 120, 25);
 			switchPanelButton.addActionListener(new ActionListener(){  
 				public void actionPerformed(ActionEvent e){
-					changeFrame();	
-					
+					//changeFrame();	
+					layout.show(deck, "main");
 					}  
 					}
 				);
-				lePanel.add(switchPanelButton);
+				pruefungPanel.add(switchPanelButton);
 		
-				lePanel.setLayout(null);
-				lePanel.setBorder(BorderFactory.createEmptyBorder(30, 30, 10, 10));
-		
-		pruefungFrame.setPreferredSize(new DimensionUIResource(1000, 1000));
-		pruefungFrame.add(lePanel, BorderLayout.CENTER);
-		pruefungFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		pruefungFrame.setTitle("bruh");
-		pruefungFrame.pack();
-		pruefungFrame.setVisible(false);
+				pruefungPanel.setLayout(null);
+				pruefungPanel.setBorder(BorderFactory.createEmptyBorder(30, 30, 10, 10));
+
 	}
 
 	private void initializeLernFrame(){
-		lernFrame = new JFrame();
+
+		JButton zurueckButton;
+		zurueckButton = new JButton("Zurück");
+		zurueckButton.setBounds(250, 100, 120, 30);
+		zurueckButton.addActionListener(new ActionListener(){  
+			public void actionPerformed(ActionEvent e){
+				layout.show(deck, "main");
+			}});
+
+		lernPanel.add(zurueckButton);
+
 		int anzahlVokabeln = voc.Vokabelliste.getLength();
 
         String vokabeln[][] = new String[anzahlVokabeln][2];
@@ -214,14 +212,48 @@ public class GUI{
 
 		JScrollPane sp = new JScrollPane(tabelle);
 
-		lernFrame.add(sp);
-        lernFrame.setSize(500, 200);
-        lernFrame.setVisible(true);
+		lernPanel.add(sp);
+		
+
 
 	}
 
 	private void initializeHomescreenFrame(){
+		JButton startePruefungButton;
+		JButton vokHinzufuegenButton;
+		JButton listeVokButton;
+
+		startePruefungButton = new JButton("Starte Prüfung");
+		startePruefungButton.setBounds(10, 85, 120, 25);
+		startePruefungButton.addActionListener(new ActionListener(){  
+			public void actionPerformed(ActionEvent e){
+				layout.show(deck, "pruefung");
+				}  
+				}
+			);
+		hauptMenuPanel.add(startePruefungButton);
+
+		vokHinzufuegenButton = new JButton("Füge Vokabeln hinzu");
+		vokHinzufuegenButton.setBounds(10, 120, 120, 25);
+		vokHinzufuegenButton.addActionListener(new ActionListener(){  
+			public void actionPerformed(ActionEvent e){
+				layout.show(deck, "hinzufuegen");
+				}  
+				}
+			);
+		hauptMenuPanel.add(vokHinzufuegenButton);
 		
+		listeVokButton = new JButton("Liste der Vokabeln");
+		listeVokButton.setBounds(10, 150, 120, 25);
+		listeVokButton.addActionListener(new ActionListener(){  
+			public void actionPerformed(ActionEvent e){
+				layout.show(deck, "lernen");
+				}  
+				}
+			);
+		hauptMenuPanel.add(listeVokButton);
+
+
 	}
 
 	public GUI(){
@@ -236,23 +268,28 @@ public class GUI{
 		initializeAddFrame();
 		initializePruefungFrame();
 		initializeLernFrame();
-		AddWordFrame.setVisible(true);
-		pruefungFrame.setVisible(false);
+		initializeHomescreenFrame();
+
 		
+		deck.setLayout(layout);
+		deck.setBounds(0, 0, 1000, 1000);
+		deck.add(hauptMenuPanel, "main");
+		deck.add(pruefungPanel, "pruefung");
+		deck.add(hinzufuegenPanel, "hinzufuegen");
+		deck.add(lernPanel, "lernen");
+
+
+		mainFrame = new JFrame();
+		mainFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		mainFrame.add(deck);
+		mainFrame.setPreferredSize(new Dimension(1000, 1000));
+		mainFrame.pack();
+		mainFrame.setLocationRelativeTo(null);
+		mainFrame.setVisible(true);
+
+	
 	}
 
-
-	private void changeFrame(){
-		if(AddWordFrame.isVisible()){
-			AddWordFrame.setVisible(false);
-			pruefungFrame.setVisible(true);
-		}
-		else{
-			AddWordFrame.setVisible(true);
-			pruefungFrame.setVisible(false);
-		}
-
-	}
 
 	
 	private void testingShit(){

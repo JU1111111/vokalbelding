@@ -85,6 +85,9 @@ public class DynArray {
     
     public void delete(int index) {
         if(index == 0) {
+            if (this.first.nachfolger == null){
+                this.last = null;
+            }
             this.first = this.first.nachfolger;
         } else if(index == this.getLength() - 1 ) {
             Element search = this.first;
@@ -100,9 +103,9 @@ public class DynArray {
             }
             search.nachfolger = search.nachfolger.nachfolger;
         }
-        
         this.length--;
     }
+
     
     public int getLength() {
         return this.length;

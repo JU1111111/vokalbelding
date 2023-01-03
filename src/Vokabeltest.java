@@ -1,5 +1,6 @@
 //import java.util.ArrayList;
 import java.util.concurrent.ThreadLocalRandom;
+import java.util.*;
 
 
 public class Vokabeltest{
@@ -29,14 +30,21 @@ public class Vokabeltest{
 
 
 	public void shuffleVocList(){
-		shuffeledList = Vokabelliste;
-		for (int i = 0; i < Vokabelliste.getLength(); i++) {
-			int randomNum = ThreadLocalRandom.current().nextInt(0, Vokabelliste.getLength() - 1);
-			VokabelWort toshuffle = (VokabelWort) Vokabelliste.getItem(i);
-			Vokabelliste.delete(i);
-			shuffeledList.setItem(randomNum, toshuffle);
-		} 
-		Vokabelliste = shuffeledList;
+		ArrayList<VokabelWort> vokArrLst = new ArrayList<VokabelWort>();
+
+		while(!Vokabelliste.isEmpty()){
+			VokabelWort vok = (VokabelWort) Vokabelliste.getItem(0);
+			Vokabelliste.delete(0);
+			vokArrLst.add(vok);
+		}
+
+		Collections.shuffle(vokArrLst);
+		System.out.println(vokArrLst.size());
+		for (VokabelWort vokabel : vokArrLst) {
+			//System.out.println(vokabel.word);
+			Vokabelliste.append(vokabel);
+		}
+
 	}
 
 

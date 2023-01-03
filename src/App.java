@@ -1,7 +1,7 @@
 public class App {
     public static void main(String[] args) throws Exception {
         new GUI();
-        //testing();
+        testing();
     }
     public static void testing() {
         Vokabeltest voc = new Vokabeltest();
@@ -16,8 +16,9 @@ public class App {
         }
 
         voc.shuffleVocList();
-        
-        for (int i = 0; i < voc.Vokabelliste.getLength()-1; i++){
+        System.out.println(voc.Vokabelliste.getLength());
+
+        for (int i = 0; i < voc.Vokabelliste.getLength(); i++){
             VokabelWort V = (VokabelWort) voc.Vokabelliste.getItem(i);
             System.out.println(V.word);
         }
