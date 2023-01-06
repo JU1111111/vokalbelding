@@ -1,5 +1,8 @@
 //import java.util.ArrayList;
 import java.util.concurrent.ThreadLocalRandom;
+
+import com.fasterxml.jackson.databind.ObjectMapper;
+
 import java.util.*;
 
 
@@ -8,7 +11,6 @@ public class Vokabeltest{
 	DynArray shuffeledList= new DynArray();
 	private int counter;
 	VokabelWort voc;
-
 
 	public Vokabeltest(){
 		
